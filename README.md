@@ -14,20 +14,21 @@ This tool provides a graphical user interface (GUI) for encrypting and decryptin
 
 - Export/Import Messages: Users can export encrypted messages to a text file and import encrypted messages from a text file. This feature allows users to backup and restore encrypted messages.
 
-## Installation:
-
-Python: Make sure you have Python 3.x installed on your system. You can download it from the official Python website.
-
-Dependencies: Install the required dependencies using pip, Python's package manager. Open your terminal/command prompt and run the following command:
-
-`pip install tkinter cryptography`
+## Installation Steps:
+1. Install Dependencies: Open your terminal/command prompt and run the following command to install the required dependencies: ```pip install tkinter cryptography```</br>
 This command will install Tkinter for GUI support and the cryptography library for encryption and decryption.
 
-Clone Repository: Clone this repository to your local machine:
+2. Clone Repository: Clone this repository to your local machine using the following command: ```git clone https://github.com/canuski/AES256_application.git```</br>
 
-`git clone https://github.com/your-username/aes-256-encryption-tool.git`
-//out intructions here
+## Building and Running the Project:
+To build the project and create an executable file (.exe), you can use tools like PyInstaller. Follow these steps:
 
+1. Install PyInstaller: If you haven't installed PyInstaller, you can do so via pip: ```pip install pyinstaller```
+2. Navigate to the Project Directory: Use the cd command to navigate to the directory where you cloned the repository.
+3. Run PyInstaller: Run PyInstaller with the appropriate options to create the executable file. For example: ```pyinstaller --onefile --windowed aes256.py``` </br> </br>
+This command will create a single executable file (main.exe) in the dist directory.
+
+4. Run the Executable: You can now run the executable file (main.exe) by double-clicking on it or running it from the command line.
 
 ## Example Usage:
 
