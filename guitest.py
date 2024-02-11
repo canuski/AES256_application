@@ -6,6 +6,12 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import padding
 import os
 
+# Constants for colors and fonts
+BG_COLOR = "#9c27b0"  # Purple background color
+BUTTON_COLOR = "#7b1fa2"  # Purple button color
+BUTTON_TEXT_COLOR = "white"  # White text color for buttons
+FONT_STYLE = "Arial"
+
 DATABASE_FILE = "encrypted_messages.sqlite"
 
 
@@ -16,6 +22,8 @@ def initialize_database():
                  (id INTEGER PRIMARY KEY, encrypted_message TEXT, encryption_key TEXT)''')
     conn.commit()
     conn.close()
+
+# Rest of the code remains the same...
 
 
 def save_encrypted_message(encrypted_message, encryption_key):
@@ -78,37 +86,26 @@ class App:
     def __init__(self, master):
         self.master = master
         master.title("AES-256 Encryption/Decryption Tool")
+        master.geometry("400x300")
+        master.configure(bg=BG_COLOR)
 
-        self.label = tk.Label(
-            master, text="Welcome to the AES-256 Encryption/Decryption Tool!")
-        self.label.pack()
+        tk.Label(master, text="Welcome to the AES-256 Encryption/Decryption Tool!",
+                 font=(FONT_STYLE, 14), bg=BG_COLOR, fg="white").pack(pady=10)
 
-        self.encrypt_button = tk.Button(
-            master, text="Encrypt", command=self.encrypt)
-        self.encrypt_button.pack()
-
-        self.decrypt_button = tk.Button(
-            master, text="Decrypt", command=self.decrypt)
-        self.decrypt_button.pack()
-
-        self.export_button = tk.Button(
-            master, text="Export Encrypted Messages", command=self.export_messages)
-        self.export_button.pack()
-
-        self.import_button = tk.Button(
-            master, text="Import Encrypted Messages", command=self.import_messages)
-        self.import_button.pack()
-
-        self.view_button = tk.Button(
-            master, text="View Encrypted Messages", command=self.view_messages)
-        self.view_button.pack()
-
-        self.delete_button = tk.Button(
-            master, text="Delete Encrypted Message", command=self.delete_message)
-        self.delete_button.pack()
-
-        self.exit_button = tk.Button(master, text="Exit", command=master.quit)
-        self.exit_button.pack()
+        tk.Button(master, text="Encrypt", command=self.encrypt, bg=BUTTON_COLOR,
+                  fg=BUTTON_TEXT_COLOR, font=(FONT_STYLE, 12)).pack(pady=5)
+        tk.Button(master, text="Decrypt", command=self.decrypt, bg=BUTTON_COLOR,
+                  fg=BUTTON_TEXT_COLOR, font=(FONT_STYLE, 12)).pack(pady=5)
+        tk.Button(master, text="Export Encrypted Messages", command=self.export_messages,
+                  bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR, font=(FONT_STYLE, 12)).pack(pady=5)
+        tk.Button(master, text="Import Encrypted Messages", command=self.import_messages,
+                  bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR, font=(FONT_STYLE, 12)).pack(pady=5)
+        tk.Button(master, text="View Encrypted Messages", command=self.view_messages,
+                  bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR, font=(FONT_STYLE, 12)).pack(pady=5)
+        tk.Button(master, text="Delete Encrypted Message", command=self.delete_message,
+                  bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR, font=(FONT_STYLE, 12)).pack(pady=5)
+        tk.Button(master, text="Exit", command=master.quit, bg=BUTTON_COLOR,
+                  fg=BUTTON_TEXT_COLOR, font=(FONT_STYLE, 12)).pack(pady=5)
 
     def encrypt(self):
         self.new_window = tk.Toplevel(self.master)
