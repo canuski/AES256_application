@@ -54,4 +54,7 @@ This command will create a single executable file (main.exe) in the dist directo
    Click the "Export Encrypted Messages" button to export all encrypted messages to a text file.
    To import encrypted messages from a text file, click the "Import Encrypted Messages" button and select the file containing the messages.
 
+Example video: [https://www.youtube.com/watch?v=gz40giqWguY]
+
+
 **_Note: Ensure that you have all dependencies installed before running the script._**
