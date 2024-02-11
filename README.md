@@ -33,4 +33,4 @@ Delete Message: Enter the ID of the message you want to delete in the input fiel
 
 Export/Import Messages: Click the "Export Encrypted Messages" button to export all encrypted messages to a text file. To import encrypted messages from a text file, click the "Import Encrypted Messages" button and select the file containing the messages.
 
-!Note: Ensure that you have all dependencies installed before running the script.!
+**Note: Ensure that you have all dependencies installed before running the script.**
