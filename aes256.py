@@ -94,71 +94,78 @@ def decrypt_aes_256(encrypted_data, key):
 
 def delete_message():
     # Function to delete an encrypted message
+    # Get the message ID from the entry widget
     message_id = entry_delete_message_id.get()
+    # Delete the message from the database
     delete_encrypted_message(message_id)
     messagebox.showinfo("Message Deleted",
                         "Encrypted message deleted successfully.")
 
-# Function to display saved encrypted messages
-
 
 def view_saved_messages():
+    # Function to display saved encrypted messages
+    # Get all the encrypted messages from the database
     messages = get_encrypted_messages()
-    if messages:
-        message_str = ""
-        for message in messages:
+    if messages:  # If there are messages
+        message_str = ""  # Create an empty string to store the messages
+        for message in messages:  # Loop through each message
+            # Add the message to the string
             message_str += f"ID: {message[0]}, Encrypted message: {message[1]}, Encryption key: {message[2]}\n"
+        # Display the messages in a message box
         messagebox.showinfo("Saved Encrypted Messages", message_str)
     else:
+        # If there are no messages, display a message box with a message
         messagebox.showinfo("No Messages", "No encrypted messages found.")
-
-# Function to handle encryption button click
 
 
 def encrypt_message():
-    plain_text = entry_plain_text.get()
-    key = os.urandom(32)
+    # Function to handle encryption button click
+    plain_text = entry_plain_text.get()  # Get the plain text from the entry widget
+    key = os.urandom(32)  # Generate a random 32-byte key
+    # Encrypt the plain text using the key
     encrypted_message = encrypt_aes_256(plain_text, key)
+    # Save the encrypted message and the key to the database
     save_encrypted_message(encrypted_message.hex(), key.hex())
     messagebox.showinfo(
-        "Encrypted String", f"Encrypted String: {encrypted_message.hex()}\nEncryption Key: {key.hex()}")
-
-# Function to handle decryption button click
+        "Encrypted String", f"Encrypted String: {encrypted_message.hex()}\nEncryption Key: {key.hex()}")  # Display the encrypted message and the key in a message box
 
 
 def decrypt_message():
-    message_id = entry_message_id.get()
+    # Function to handle decryption button click
+    message_id = entry_message_id.get()  # Get the message ID from the entry widget
+    # Get all the encrypted messages from the database
     messages = get_encrypted_messages()
-    found = False
-    for message in messages:
+    found = False  # Flag to check if the message with the specified ID is found
+    for message in messages:  # Loop through each message
+        # If the message ID matches the specified ID
         if message[0] == int(message_id):
-            found = True
+            found = True  # Set the flag to True
             decrypted_message = decrypt_aes_256(
-                bytes.fromhex(message[1]), bytes.fromhex(message[2]))
+                bytes.fromhex(message[1]), bytes.fromhex(message[2]))  # Decrypt the message using the encryption key, the message and the key are stored as hex strings in the database
             messagebox.showinfo("Decrypted Message",
-                                f"Decrypted message: {decrypted_message}")
+                                f"Decrypted message: {decrypted_message}")  # Display the decrypted message in a message box
             break
     if not found:
         messagebox.showerror("Error", "Message with specified ID not found.")
 
-# Function to export encrypted messages to a file
-
 
 def export_encrypted_messages():
+    # Function to export encrypted messages to a file
     filename = filedialog.asksaveasfilename(
-        defaultextension=".txt", filetypes=[("Text files", "*.txt")])
+        defaultextension=".txt", filetypes=[("Text files", "*.txt")])  # Ask the user to select a file to save the encrypted messages
     if filename:
+        # Get all the encrypted messages from the database
         messages = get_encrypted_messages()
-        with open(filename, 'w') as file:
-            for message in messages:
+        with open(filename, 'w') as file:   # Open the file in write mode
+            for message in messages:  # Loop through each message
+                # Write the message ID, the encrypted message and the encryption key to the file
                 file.write(f"{message[0]},{message[1]},{message[2]}\n")
         messagebox.showinfo("Export Successful",
                             "Encrypted messages exported successfully.")
 
-# Function to import encrypted messages from a file
-
 
 def import_encrypted_messages():
+    # Function to import encrypted messages from a file
     filename = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
     if filename:
         with open(filename, 'r') as file:
@@ -181,9 +188,9 @@ root = tk.Tk()
 root.title("AES-256 Encryption/Decryption Tool")
 
 # Define colors
-bg_color = "#D1C4E9"
-btn_bg_color = "#ffffff"
-btn_fg_color = "#ab77e1"  # Black button text color
+bg_color = "#D1C4E9"  # Light purple color for the background
+btn_bg_color = "#ffffff"  # White color for the buttons
+btn_fg_color = "#ab77e1"  # Light purple color for the button text
 
 # Set background color
 root.configure(bg=bg_color)
@@ -193,11 +200,12 @@ label_plain_text = tk.Label(
     root, text="Enter your string to encrypt and save:", bg=bg_color)
 label_plain_text.pack()
 
+# Create an entry widget to allow the user to enter the plain text
 entry_plain_text = tk.Entry(root)
 entry_plain_text.pack()
 
 button_encrypt = tk.Button(root, text="Encrypt and Save",
-                           command=encrypt_message, bg=btn_bg_color, fg=btn_fg_color)
+                           command=encrypt_message, bg=btn_bg_color, fg=btn_fg_color)  # Create a button widget to allow the user to encrypt the plain text
 button_encrypt.pack()
 
 # Create and pack widgets for decryption
@@ -205,9 +213,11 @@ label_message_id = tk.Label(
     root, text="Enter the ID of the message you want to decrypt:", bg=bg_color)
 label_message_id.pack()
 
+# Create an entry widget to allow the user to enter the message ID
 entry_message_id = tk.Entry(root)
 entry_message_id.pack()
 
+# Create a button widget to allow the user to decrypt the message
 button_decrypt = tk.Button(
     root, text="Decrypt", command=decrypt_message, bg=btn_bg_color, fg=btn_fg_color)
 button_decrypt.pack()
