@@ -27,10 +27,10 @@ Clone Repository: Clone this repository to your local machine:
 
 `git clone https://github.com/your-username/aes-256-encryption-tool.git`
 Run the Script: Navigate to the directory where you cloned the repository and run the script:
-
-`cd aes-256-encryption-tool`
+`cd aes-256-encryption-tool`,
 `python aes_256_encryption_tool.py`
-Example Usage:
+
+## Example Usage:
 
 1. Encryption:
    Enter the text you want to encrypt in the provided input field.
