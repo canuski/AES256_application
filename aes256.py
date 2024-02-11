@@ -1,4 +1,5 @@
-import tkinter as tk
+# Import the required libraries
+import tkinter as tk 
 from tkinter import messagebox, filedialog
 import sqlite3
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -6,50 +7,39 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import padding
 import os
 
+# Define the name of the database file
 DATABASE_FILE = "encrypted_messages.sqlite"
-
-# Function to initialize the database
-
 
 def initialize_database():
     conn = sqlite3.connect(DATABASE_FILE)
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS encrypted_messages
-                 (id INTEGER PRIMARY KEY, encrypted_message TEXT, encryption_key TEXT)''')
+                 (id INTEGER PRIMARY KEY, encrypted_message TEXT, encryption_key TEXT)''') # Create a table to store encrypted messages
     conn.commit()
-    conn.close()
-
-# Function to save an encrypted message to the database
-
+    conn.close() # Close the connection
 
 def save_encrypted_message(encrypted_message, encryption_key):
     conn = sqlite3.connect(DATABASE_FILE)
     c = conn.cursor()
     c.execute("INSERT INTO encrypted_messages (encrypted_message, encryption_key) VALUES (?, ?)",
-              (encrypted_message, encryption_key))
+              (encrypted_message, encryption_key)) # Insert the encrypted message and encryption key into the database
     conn.commit()
-    conn.close()
-
-# Function to get encrypted messages from the database
-
+    conn.close() # Close the connection
 
 def get_encrypted_messages():
     conn = sqlite3.connect(DATABASE_FILE)
     c = conn.cursor()
-    c.execute("SELECT * FROM encrypted_messages")
-    messages = c.fetchall()
-    conn.close()
+    c.execute("SELECT * FROM encrypted_messages") # Retrieve all encrypted messages from the database
+    messages = c.fetchall() # Fetch all the results
+    conn.close() # Close the connection
     return messages
-
-# Function to delete an encrypted message from the database
-
 
 def delete_encrypted_message(message_id):
     conn = sqlite3.connect(DATABASE_FILE)
     c = conn.cursor()
-    c.execute("DELETE FROM encrypted_messages WHERE id=?", (message_id,))
+    c.execute("DELETE FROM encrypted_messages WHERE id=?", (message_id,)) # Delete the encrypted message with the specified ID
     conn.commit()
-    conn.close()
+    conn.close() # Close the connection
 
 # Function to encrypt a string using AES-256
 
