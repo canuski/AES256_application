@@ -175,52 +175,61 @@ initialize_database()
 root = tk.Tk()
 root.title("AES-256 Encryption/Decryption Tool")
 
+# Define colors
+bg_color = "#D1C4E9"  
+btn_bg_color = "#ffffff"  
+btn_fg_color = "#ab77e1"  # Black button text color
+
+# Set background color
+root.configure(bg=bg_color)
+
 # Create and pack widgets for encryption
 label_plain_text = tk.Label(
-    root, text="Enter your string to encrypt and save:")
+    root, text="Enter your string to encrypt and save:", bg=bg_color)
 label_plain_text.pack()
 
 entry_plain_text = tk.Entry(root)
 entry_plain_text.pack()
 
-button_encrypt = tk.Button(
-    root, text="Encrypt and Save", command=encrypt_message)
+button_encrypt = tk.Button(root, text="Encrypt and Save",
+                           command=encrypt_message, bg=btn_bg_color, fg=btn_fg_color)
 button_encrypt.pack()
 
 # Create and pack widgets for decryption
 label_message_id = tk.Label(
-    root, text="Enter the ID of the message you want to decrypt:")
+    root, text="Enter the ID of the message you want to decrypt:", bg=bg_color)
 label_message_id.pack()
 
 entry_message_id = tk.Entry(root)
 entry_message_id.pack()
 
-button_decrypt = tk.Button(root, text="Decrypt", command=decrypt_message)
+button_decrypt = tk.Button(
+    root, text="Decrypt", command=decrypt_message, bg=btn_bg_color, fg=btn_fg_color)
 button_decrypt.pack()
 
 # Create and pack other buttons for additional options
-button_export = tk.Button(
-    root, text="Export Encrypted Messages", command=export_encrypted_messages)
+button_export = tk.Button(root, text="Export Encrypted Messages",
+                          command=export_encrypted_messages, bg=btn_bg_color, fg=btn_fg_color)
 button_export.pack()
 
-button_import = tk.Button(
-    root, text="Import Encrypted Messages", command=import_encrypted_messages)
+button_import = tk.Button(root, text="Import Encrypted Messages",
+                          command=import_encrypted_messages, bg=btn_bg_color, fg=btn_fg_color)
 button_import.pack()
 
-button_view = tk.Button(
-    root, text="View Saved Encrypted Messages", command=view_saved_messages)
+button_view = tk.Button(root, text="View Saved Encrypted Messages",
+                        command=view_saved_messages, bg=btn_bg_color, fg=btn_fg_color)
 button_view.pack()
 
 # Create and pack widgets for deleting a message
 label_delete_message_id = tk.Label(
-    root, text="Enter the ID of the message you want to delete:")
+    root, text="Enter the ID of the message you want to delete:", bg=bg_color)
 label_delete_message_id.pack()
 
 entry_delete_message_id = tk.Entry(root)
 entry_delete_message_id.pack()
 
-button_delete = tk.Button(
-    root, text="Delete Encrypted Message", command=delete_message)
+button_delete = tk.Button(root, text="Delete Encrypted Message",
+                          command=delete_message, bg=btn_bg_color, fg=btn_fg_color)
 button_delete.pack()
 
 # Start the Tkinter event loop
