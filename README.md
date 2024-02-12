@@ -14,6 +14,10 @@ This tool provides a graphical user interface (GUI) for encrypting and decryptin
 
 - Export/Import Messages: Users can export encrypted messages to a text file and import encrypted messages from a text file. This feature allows users to backup and restore encrypted messages.
 
+## **Added Features**
+
+- Name field and input. Save your messages and keys with a name.
+
 ## Installation Steps:
 1. Install Dependencies: Open your terminal/command prompt and run the following command to install the required dependencies: ```pip install tkinter cryptography```</br>
 This command will install Tkinter for GUI support and the cryptography library for encryption and decryption.
