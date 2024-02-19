@@ -2,6 +2,8 @@
 
 This tool provides a graphical user interface (GUI) for encrypting and decrypting messages using the AES-256 encryption algorithm. It also allows users to save encrypted messages to a database, view saved messages, delete messages, and export/import encrypted messages to/from files.
 
+To use the app, run the .exe or follow the steps below.
+
 ## Features:
 
 - Encryption: Users can enter a string of text to encrypt using AES-256 encryption. Upon encryption, the tool generates a random encryption key, encrypts the message, and stores both the encrypted message and the encryption key in a SQLite database.
