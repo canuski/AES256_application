@@ -207,4 +207,7 @@ button_delete = tk.Button(root, text="Delete Encrypted Message",
                           command=delete_message, bg=btn_bg_color, fg=btn_fg_color)
 button_delete.pack()
 
+# Set the icon for the window
+root.iconbitmap('E:\Projects\Icons\palestine.ico')
+
 root.mainloop()

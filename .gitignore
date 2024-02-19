@@ -1,3 +1,4 @@
 dist/
 build/
 aes256.spec
+encrypted_messages.sqlite
